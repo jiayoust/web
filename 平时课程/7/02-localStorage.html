@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<meta charset=gb2312" />
+<script>
+function save()
+{
+	var name = document.getElementById("name").value;
+	localStorage.setItem("name",name);
+}
+function read()
+{
+	var result = document.getElementById("result");
+	result.innerHTML = localStorage.getItem("name");
+}
+function remove()
+{
+	localStorage.removeItem("name");
+}
+</script>
+<fieldset>
+<legend>localStorage的应用</legend>
+<input type="text" id="name" value=""/>
+<br>
+<span id="result"></span><br>
+<button onclick="save()">保存</button>
+<button onclick="read()">读取</button>
+<button onclick="remove()">清除</button>
+</fieldset>

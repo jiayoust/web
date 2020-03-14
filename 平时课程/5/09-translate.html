@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<meta charset=gb2312" />
+<script>
+function draw()
+{
+	var canvas = document.getElementById("myCanvas");
+	var context = canvas.getContext("2d");
+	context.fillRect(0,0,100,50); //绘制第一个矩形
+	context.translate(50,80); //设置坐标平移
+	context.fillRect(0,0,100,50); //绘制第二个矩形
+}
+</script>
+<fieldset>
+<legend>使用translate设置坐标平移</legend>
+<canvas id="myCanvas" width="200px" height="200px"> 
+</canvas>
+<br>
+<button onclick="draw()">绘图</button>
+</fieldset>
+</html>

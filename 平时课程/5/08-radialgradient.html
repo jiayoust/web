@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<meta charset=gb2312" />
+<script>
+function draw()
+{
+	var canvas=document.getElementById("myCanvas");
+	var context=canvas.getContext("2d");
+	fillColorRadial = context.createRadialGradient(150,150,10, 150,150,200);
+	fillColorRadial.addColorStop(0, "red"); // 设置第一阶段颜色
+	fillColorRadial.addColorStop(0.3, "yellow"); // 设置第二阶段颜色
+	fillColorRadial.addColorStop(0.6, "black"); // 设置第三阶段颜色
+        
+	context.fillStyle = fillColorRadial; //填充样式
+	context.rect(0,0,300,300); 
+	context.fill();
+}
+</script>
+<fieldset>
+<legend>径向渐变</legend>
+<canvas id="myCanvas" width="300px" height="300px"> 
+</canvas>
+<br>
+<button onclick="draw()">绘图</button>
+</fieldset>
+</html>

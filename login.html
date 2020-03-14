@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style type="text/css">
+#div1 {width:300px; height:190px;padding:10px;border:1px solid #aaaaaa;}
+</style>
+<script type="text/javascript">
+function allowDrop(ev)
+{
+ev.preventDefault();
+}
+
+function drag(ev)
+{
+ev.dataTransfer.setData("Text",ev.target.id);
+}
+
+function drop(ev)
+{
+ev.preventDefault();
+var data=ev.dataTransfer.getData("Text");
+ev.target.appendChild(document.getElementById(data));
+}
+</script>
+</head>
+<body>
+
+<p>请把中国地图拖放到矩形中：</p>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<img id="drag1" src="/C:/Users/lenovo/Desktop/ditu.jpg" draggable="true" ondragstart="drag(event)" /><br />
+<p id="demo">点击按钮获取您当前坐标（可能需要比较长的时间获取）：</p>
+<button onclick="getLocation()">点我</button>
+<br>
+<script>
+var x=document.getElementById("demo");
+function getLocation()
+  {
+  if (navigator.geolocation)
+    {
+    navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  else{x.innerHTML="该浏览器不支持获取地理位置。";}
+  }
+function showPosition(position)
+  {
+  x.innerHTML="纬度: " + position.coords.latitude + 
+  "<br>经度: " + position.coords.longitude;	
+  }
+  
+</script>
+</br>
+<canvas id="myCanvas" width="200" height="100" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+<p >用画内容布画房子：</p>
+<script type="text/javascript">
+
+var c=document.getElementById("myCanvas");
+var cxt=c.getContext("2d");
+var grd=cxt.createLinearGradient(40,40,120,50);
+grd.addColorStop(0,"#FF0000");
+grd.addColorStop(1,"#00FF00");
+cxt.fillStyle=grd;
+cxt.fillRect(40,40,120,50);
+cxt.moveTo(100,10);
+cxt.lineTo(160,40);
+cxt.lineTo(160,90);
+cxt.lineTo(40,90);
+cxt.lineTo(40,40);
+cxt.lineTo(100,10);
+
+cxt.stroke();
+
+</script>
+</body>
+</html>

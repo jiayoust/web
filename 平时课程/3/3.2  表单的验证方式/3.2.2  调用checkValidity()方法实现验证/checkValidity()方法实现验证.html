@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/
+TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+</head>
+<body>
+<script>
+function checkEmail()
+{
+	var name = document.getElementById("txtUserName");
+	var result = document.getElementById("result");
+	var flag = name.checkValidity();
+	if(flag)
+	{
+		result.innerHTML = "用户名格式正确";
+	}
+	else
+	{
+		result.innerHTML = "用户名格式不正确";
+	}
+}
+</script>
+<form>
+	<fieldset>
+		<legend>
+			请输入您的用户名和密码信息
+		</legend>
+		用户名 :
+		<input type="text" id="txtUserName" onblur="checkEmail()"pattern="^[a-zA-Z0-9]{5,}$">
+		<span id="result"></span>
+		<br>
+		密码 ：
+		<input type="text" id="txtPassword">
+	</fieldset>
+</form>
+</body>
+</html>

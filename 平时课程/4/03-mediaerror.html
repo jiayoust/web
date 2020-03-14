@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<meta charset=gb2312" />
+<script>
+function show()
+{
+	var video = document.getElementById("myvideo");
+	var errorCode = video.error.code;
+	if(errorCode=="1")
+	{
+		alert("读取或加载媒体文件出错！");
+	}
+	else if(errorCode=="2")
+	{
+		alert("网络资源不可用！");
+	}
+	else if(errorCode=="3")
+	{
+		alert("解码错误！");
+	}
+	else
+	{
+		alert("不支持的媒体格式！");
+	}
+}
+</script>
+<video id="myvideo" src="video/4_1.txt" controls onError="show()">
+</video>
+</audio>
+</html>

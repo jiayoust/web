@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<meta charset=gb2312" />
+<script>
+function draw()
+{
+	var canvas = document.getElementById("myCanvas");
+	var context = canvas.getContext("2d");
+	context.fillStyle = "red"; //设置填充颜色为红色
+	context.fillRect(50,50,100,100); //绘制矩形
+	context.shadowOffsetX =10; //设置阴影水平偏移量 
+	context.shadowOffsetY =10; //设置阴影垂直偏移量
+	context.shadowColor ="blue"; //设置阴影颜色
+	context.shadowBlur=5; //设置阴影模糊度
+}
+</script>
+<fieldset>
+<legend>使用图形阴影</legend>
+<canvas id="myCanvas" width="200px" height="200px"> 
+</canvas>
+<br>
+<button onclick="draw()">绘图</button>
+</fieldset>
+</html>

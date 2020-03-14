@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<meta charset=gb2312" />
+<script>
+var DB;
+//创建数据库方法
+function initDatabase() {
+    if (!window.openDatabase) {
+        alert('浏览器不支持Web SQL数据库.');
+    } else {
+        var dbName = 'stDB'; //定义数据库名称
+        var dbVersion = '1.0'; //定义数据库版本
+        var dbDec = 'DEMO Database'; //定义数据库说明信息
+        var dbSize = 100000; //  定义数据库大小
+        DB = openDatabase(dbName, dbVersion, dbDec, dbSize,showResult('数据库创建成功')); //创建数据库，并调用showResult方法
+    }
+}
+//创建数据表方法
+function createTable()
+{
+	DB.transaction(function(tx){
+		tx.executeSql(
+			'create table if not exists ProductInfo(ProductName,price,MFG,Quantity,Manuafacturer)',
+			[],
+			showResult('数据表创建成功')
+		);
+	});
+}
+//插入数据方法
+function insertData()
+{
+	DB.transaction(function(tx){
+		tx.executeSql(
+			'insert into ProductInfo(ProductName,price,MFG,Quantity,Manuafacturer) values(?,?,?,?,?)',
+			["Jerry","1234","gfasd","fdsaf","fasdf"],
+			function(tx,rs){
+				showResult('添加成功');
+			},
+			function(tx,error){
+				showResult('添加失败');
+			}
+		);
+	});
+}
+function updateData()
+{
+	DB.transaction(function(tx){
+		tx.executeSql(
+			'update ProductInfo set price=?',
+			["235254"],
+			function(tx,rs){
+				showResult('更新成功');
+			},
+			function(tx,error){
+				showResult('更新失败');
+			}
+		);
+	});
+}
+function queryData()
+{
+	DB.transaction(function(tx){
+		tx.executeSql(
+			'select * from ProductInfo',
+			[],
+			function(tx,rs){
+				var msg ='';
+				for(var i=0;i<rs.rows.length;i++)
+				{
+					msg += 'productname : '+rs.rows.item(i).ProductName+ ' , price : ' +rs.rows.item(i).price + ",MFG:"+rs.rows.item(i).MFG+",Quantity:"+rs.rows.item(i).Quantity+",Manuafacturer:"+rs.rows.item(i).Manuafacturer+"<br>";
+				}
+				showResult(msg);
+			}
+		);
+	});
+}
+function deleteData()
+{
+	DB.transaction(function(tx){
+		tx.executeSql(
+			'delete from ProductInfo',
+			[],
+			function(tx,rs){
+				showResult('删除成功');
+			},
+			function(tx,error){
+				showResult('删除失败');
+			}
+		);
+	});
+}
+function showResult(msg)
+{
+	var result = document.getElementById("result");
+	result.innerHTML =msg;
+}
+</script>
+<fieldset>
+<legend>Web SQL建表、插入及查询操作</legend>
+<span id="result"></span><br>
+<button onclick="initDatabase()">创建数据库</button>
+<button onclick="createTable()">创建数据表</button>
+<br>
+<button onclick="insertData()">插入数据</button>
+<button onclick="updateData()">更新数据</button>
+<button onclick="queryData()">查询所有数据</button>
+<button onclick="deleteData()">删除所有数据</button>
+</fieldset>

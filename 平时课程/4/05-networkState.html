@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<meta charset=gb2312" />
+<script>
+function checkProgress()
+{
+	var video = document.getElementById("myvideo");
+	var state = video.networkState;
+	var result = document.getElementById("result");
+	if (state=="0")
+	{
+		result.innerHTML="媒体信息正在初始化";
+	}
+	else if (state=="1")
+	{
+		result.innerHTML="媒体加载完毕，请点击播放";
+	}
+	else if (state=="2")
+	{
+		result.innerHTML="正在加载媒体信息";
+	}
+	else
+	{
+		result.innerHTML="媒体加载失败";
+	}
+}
+</script>
+<video id="myvideo" src="video/4_1.mp4" onProgress="checkProgress()" controls="true">
+</video>
+<p>
+<span id="result">123</span>
+</p>
+</html>

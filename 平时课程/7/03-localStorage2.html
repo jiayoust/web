@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<meta charset=gb2312" />
+<script>
+function save()
+{
+	localStorage.setItem("name","Jerry");
+	localStorage.setItem("age","29");
+	localStorage.setItem("email","yuqi987@sohu.com");
+}
+function read()
+{
+	var result = document.getElementById("result");
+	for(var i=0; i<localStorage.length; i++)
+	{
+		var key = localStorage.key(i); //通过key属性及索引编号获取名称
+		var value = localStorage.getItem(key); //通过名称获取数据值
+		result.innerHTML += "key : "+key+" , value : "+value+"<br>";
+	}
+}
+function removeAll()
+{
+	localStorage.clear();
+}
+</script>
+<fieldset>
+<legend>localStorage的应用</legend>
+<span id="result"></span><br>
+<button onclick="save()">保存</button>
+<button onclick="read()">读取</button>
+<button onclick="removeAll()">清空所有数据</button>
+</fieldset>

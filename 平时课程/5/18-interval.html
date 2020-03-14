@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<meta charset=gb2312" />
+<script>
+var x=0,y=0;
+//绘制矩形，其中矩形的起始点坐标为动态增加
+function move() 
+{
+	var canvas = document.getElementById("myCanvas");
+	var context = canvas.getContext("2d");
+	context.clearRect(0,0,400,400);
+	if (x<400)
+	{
+		x++;
+	}
+	if (y<200)
+	{
+		y++;
+	}
+	context.fillRect(x,y,50,50);
+}
+function draw()
+{
+	var canvas = document.getElementById("myCanvas");
+	var context = canvas.getContext("2d");
+	context.fillStyle = "red";
+	context.fillRect(0,0,50,50);
+	setInterval(move,200); //每20毫秒调用move方法一次
+}
+</script>
+<fieldset>
+<legend>简单动画效果</legend>
+<canvas id="myCanvas" width="400px" height="300px"> 
+</canvas>
+<br>
+<button onclick="draw()">绘图</button>
+</fieldset>
+</html>
